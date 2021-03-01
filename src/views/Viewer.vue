@@ -5,17 +5,19 @@
 </template>
 
 <script>
-import makeBIMDataViewer from "@bimdata/viewer";
-import SnowflakesPlugin from "@/plugins/snowflakes/src/snowflakes.plugin.js";
-import ChristmasSleighPlugin from "@/plugins/christmasSleigh/src/christmasSleigh.plugin.js";
-import SplitPlugin from "@/plugins/split/src/split.plugin.js";
-import BimObjectPlugin from "@/plugins/bimobject/src/bimobject.plugin.js";
 import { mapGetters } from "vuex";
+import makeBIMDataViewer from "@bimdata/viewer";
+
 import backgroundColor from "@/plugins/backgroundColor/src/backgroundColor.plugin.js";
 import SvgExtractorPlugin from "@/plugins/svgExtractor/src/svgExtractor.plugin.js";
 import GltfExtractorPlugin from "@/plugins/gltfExtractor/src/gltfExtractor.plugin.js";
 import HolusionPlugin from "@/plugins/holusion/src/holusion.plugin.js";
 import platformDemo from "@/plugins/platformDemo/src/platformDemo.plugin.js";
+import SnowflakesPlugin from "@/plugins/snowflakes/src/snowflakes.plugin.js";
+import ChristmasSleighPlugin from "@/plugins/christmasSleigh/src/christmasSleigh.plugin.js";
+import SplitPlugin from "@/plugins/split/src/split.plugin.js";
+import BimObjectPlugin from "@/plugins/bimobject/src/bimobject.plugin.js";
+import iframeShare from "@/plugins/iframeShare/src/iframeShare.plugin.js";
 
 export default {
   data() {
@@ -28,6 +30,7 @@ export default {
   },
   mounted() {
     const bimdataViewer = makeBIMDataViewer({
+      locale: "fr",
       api: {
         cloudId: this.$route.query.cloudId,
         projectId: this.$route.query.projectId,
@@ -47,6 +50,7 @@ export default {
     bimdataViewer.registerPlugin(BimObjectPlugin);
     bimdataViewer.registerPlugin(backgroundColor);
     bimdataViewer.registerPlugin(HolusionPlugin);
+    bimdataViewer.registerPlugin(iframeShare);
 
     bimdataViewer.registerWindow({ name: "structure", plugins: ["structure"] });
 
